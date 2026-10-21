@@ -68,7 +68,7 @@ export function HeroArches({ pool }: { pool: Item[] }) {
 function Mascot() {
   return (
     <li className="hero-mascot" aria-hidden>
-      <PupStop pose="peek" facing="right" act="peekaboo" behind lane className="w-full" />
+      <PupStop pose="peek" facing="right" act="peekaboo" behind lane />
     </li>
   );
 }

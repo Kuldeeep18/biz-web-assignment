@@ -5,7 +5,7 @@ import { Slideshow } from "@/components/ui/Slideshow";
 
 export function TwoWays({ showroom }: { showroom: Photo[] }) {
   return (
-    <section className="ways relative py-28 text-center" aria-labelledby="ways-title">
+    <section data-pup-scene className="ways relative py-28 text-center" aria-labelledby="ways-title">
       <div className="page-wrap">
         <h2 id="ways-title" data-reveal className="font-plush mx-auto max-w-[8.5em] text-[clamp(2.75rem,6.4vw,5.6rem)]">
           Two ways to meet your puppy
@@ -13,7 +13,7 @@ export function TwoWays({ showroom }: { showroom: Photo[] }) {
 
         <div className="relative mx-auto mt-10 grid max-w-[1080px] gap-y-16 min-[900px]:grid-cols-2 min-[900px]:gap-x-28">
           <span className="post hidden min-[900px]:block" aria-hidden />
-          <div className="absolute top-[-30px] left-1/2 -translate-x-1/2 z-20 hidden min-[900px]:block pointer-events-none"><PupStop pose="sit" facing="right" className="w-24" /></div>
+          <div className="absolute top-[-30px] left-1/2 -translate-x-1/2 z-20 hidden min-[900px]:block pointer-events-none"><PupStop pose="sit" facing="right" className="w-[clamp(11rem,13vw,13.5rem)]" /></div>
 
           <article data-reveal className="flex flex-col items-center gap-6 min-[900px]:items-end min-[900px]:text-right">
             <div className="sign sign--left min-[900px]:-mr-[44px] min-[900px]:rotate-[1.5deg]">

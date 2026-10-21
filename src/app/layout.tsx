@@ -4,6 +4,7 @@ import { ActionBar, Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SITE } from "@/lib/site";
 import { PupJourney } from "@/components/pup/PupJourney";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import "./globals.css";
 
 const figtree = Figtree({ variable: "--font-figtree", subsets: ["latin"] });
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
+        <SmoothScroll />
         <Header />
         <PupJourney />
         <main id="main" tabIndex={-1} className="relative pt-[var(--header-h)] outline-none">

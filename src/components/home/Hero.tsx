@@ -7,7 +7,7 @@ import { HeroArches } from "./HeroArches";
 export function Hero() {
   const pool = available.map((p) => ({ slug: p.slug, label: p.name, photo: coverOf(p) }));
   return (
-    <section className="hero relative pt-10 text-center md:pt-14" aria-labelledby="hero-title">
+    <section data-pup-scene className="hero relative pt-10 text-center md:pt-14" aria-labelledby="hero-title">
       <div className="page-wrap">
         <p className="font-scrawl inline-block text-[clamp(1.1rem,1.6vw,1.4rem)] text-toffee-deep">
           {SITE.tagline}

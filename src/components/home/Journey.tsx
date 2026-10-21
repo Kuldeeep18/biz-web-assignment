@@ -66,10 +66,10 @@ export function Journey({ photos }: { photos: PhotoData[] }) {
   });
 
   return (
-    <section className="journey py-24 md:py-28" id="journey" aria-labelledby="journey-title">
+    <section data-pup-scene className="journey py-24 md:py-28" id="journey" aria-labelledby="journey-title">
       <div className="page-wrap grid items-start gap-16 min-[900px]:grid-cols-2">
         <div>
-          <div className="w-24 mb-4 hidden min-[900px]:block"><PupStop pose="sit" facing="right" /></div>
+          <div className="w-44 mb-4 hidden min-[900px]:block"><PupStop pose="sit" facing="right" /></div>
           <h2 id="journey-title" className="font-plush text-[clamp(2.75rem,6.4vw,5.6rem)]">
             Your puppy journey
           </h2>

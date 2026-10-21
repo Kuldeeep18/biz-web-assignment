@@ -1,7 +1,6 @@
 import { PupStop } from "@/components/pup/PupStop";
 import Image from "next/image";
 import Link from "next/link";
-import { Pup } from "@/components/illustrations/Pup";
 import { Stars } from "@/components/illustrations/Stars";
 import { Wave } from "@/components/illustrations/Wave";
 import { FOOTER_LINKS, SITE, telUrl, whatsappUrl } from "@/lib/site";
@@ -24,8 +23,7 @@ export function Footer() {
         <div className="md:col-span-5">
           <p className="font-plush text-[clamp(2.4rem,4vw,3.4rem)] text-honey-soft">Home, at last.</p>
           <p className="mt-5 max-w-md text-milk/80">{SITE.about}</p>
-          <div className="relative mt-12 hidden w-32 md:block" aria-hidden>
-            <Pup pose="face" className="relative z-0 -mb-6 w-24 translate-x-4" />
+          <div className="mt-12 hidden md:block">
             <Basket />
           </div>
         </div>
@@ -89,7 +87,7 @@ export function Footer() {
 
 export function ActionBar() {
   return (
-    <div className="action-bar md:hidden">
+    <div className="action-bar md:hidden" data-whatsapp-bar>
       <a href={whatsappUrl()} className="btn btn-wa flex-1">
         WhatsApp us
       </a>
@@ -100,18 +98,27 @@ export function ActionBar() {
   );
 }
 
+/**
+ * The journey's last stop: the pup hops in and settles snug. Drawn in the pup's own
+ * 300×240 space in three layers (back rim, pup, basket front) so the pup sits inside.
+ */
 function Basket() {
+  const rim = "M116 145 A96 12 0 0 1 308 145";
   return (
-    <svg viewBox="0 0 130 64" className="relative z-10 w-32" aria-hidden>
-      <path d="M8 16h114l-12 46H20z" fill="var(--color-honey)" stroke="var(--color-toffee-ink)" strokeWidth="2.5" />
-      <path
-        d="M14 30h102M18 44h94M34 16l4 46M54 16l2 46M76 16l-2 46M96 16l-4 46"
-        stroke="var(--color-toffee-ink)"
-        strokeWidth="1.6"
-        opacity=".55"
-        fill="none"
-      />
-      <rect x="2" y="7" width="126" height="13" rx="6.5" fill="var(--color-honey-soft)" stroke="var(--color-toffee-ink)" strokeWidth="2.5" />
-    </svg>
+    <div className="basket">
+      <svg viewBox="0 0 300 240" className="basket__back" aria-hidden>
+        <ellipse cx="212" cy="145" rx="96" ry="12" className="basket__hollow" />
+        <path d={rim} className="basket__rim-line" />
+        <path d={rim} className="basket__rim" />
+      </svg>
+      <PupStop pose="snug" facing="right" act="basket" behind lane className="basket__pup" label="Teddy, snug in his basket" />
+      <svg viewBox="0 0 300 240" className="basket__front" aria-hidden>
+        <path d="M116 145 C118 180 126 214 138 232 H286 C298 214 306 180 308 145 A96 12 0 0 1 116 145 Z" className="basket__body" />
+        <path d="M121 178 Q212 197 303 178 M127 206 Q212 223 297 206" className="basket__weave" />
+        <path d="M150 164 L158 230 M182 168 L185 232 M212 169 V232 M242 168 L239 232 M274 164 L266 230" className="basket__weave basket__weave--stakes" />
+        <path d="M116 145 A96 12 0 0 0 308 145" className="basket__rim-line" />
+        <path d="M116 145 A96 12 0 0 0 308 145" className="basket__rim" />
+      </svg>
+    </div>
   );
 }

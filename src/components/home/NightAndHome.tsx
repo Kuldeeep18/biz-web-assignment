@@ -8,7 +8,7 @@ import { Porch } from "./Porch";
 
 export function NightFaq({ questions }: { questions: QA[] }) {
   return (
-    <section className="night relative overflow-hidden pt-24 pb-28 text-milk" aria-labelledby="questions-title">
+    <section data-pup-scene className="night relative overflow-hidden pt-24 pb-28 text-milk" aria-labelledby="questions-title">
       <Stars
         stars={[
           [8, 14, 10, 0.2],
@@ -32,7 +32,7 @@ export function NightFaq({ questions }: { questions: QA[] }) {
           <span className="font-scrawl ml-12 hidden rotate-12 animate-bounce text-6xl text-honey md:block" aria-hidden>
             ?
           </span>
-          <div className="w-28 hidden md:block"><PupStop pose="sit" act="tilt" facing="right" /></div>
+          <div className="w-[clamp(9.5rem,30vw,13rem)] hidden md:block"><PupStop pose="sit" act="tilt" facing="right" /></div>
         </div>
         <div>
           {questions.map((q) => (
@@ -54,7 +54,7 @@ export function NightFaq({ questions }: { questions: QA[] }) {
 
 export function WelcomeHome({ max }: { max: Photo }) {
   return (
-    <section className="night-deep pt-12 pb-16 text-center text-milk" aria-labelledby="cta-title">
+    <section data-pup-scene className="night-deep pt-12 pb-16 text-center text-milk" aria-labelledby="cta-title">
       <div className="page-wrap">
         <h2 id="cta-title" data-reveal className="font-plush mx-auto max-w-[9em] text-[clamp(2.75rem,6.4vw,5.6rem)]">
           Ready to meet your new best friend?

@@ -20,7 +20,6 @@ export function MeetThePups({ doors }: { doors: Door[] }) {
   const section = useRef<HTMLElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLOListElement>(null);
-  const walker = useRef<HTMLDivElement>(null);
   const [pinned, setPinned] = useState(false);
   const [open, setOpen] = useState<Set<string>>(() => new Set());
 
@@ -31,7 +30,6 @@ export function MeetThePups({ doors }: { doors: Door[] }) {
     const el = section.current!;
     const stageEl = stage.current!;
     const trackEl = track.current!;
-    const walkerEl = walker.current!;
     const mq = matchMedia("(min-width: 900px) and (prefers-reduced-motion: no-preference)");
     let distance = 0;
     let frame = 0;
@@ -43,7 +41,6 @@ export function MeetThePups({ doors }: { doors: Door[] }) {
       const held = stageEl.getBoundingClientRect().top - el.getBoundingClientRect().top;
       const p = Math.min(1, Math.max(0, held / distance));
       trackEl.style.transform = `translate3d(${-p * distance}px,0,0)`;
-      walkerEl.style.transform = `translate3d(${p * (window.innerWidth - 160)}px,0,0)`;
     };
     const measure = () => {
       setPinned(mq.matches);
@@ -97,7 +94,7 @@ export function MeetThePups({ doors }: { doors: Door[] }) {
   }, []);
 
   return (
-    <section ref={section} className="meet" data-pinned={pinned} aria-labelledby="meet-title">
+    <section ref={section} data-pup-scene className="meet" data-pinned={pinned} aria-labelledby="meet-title">
       <div ref={stage} className="meet__stage pt-12">
         <header className="meet__head page-wrap flex flex-wrap items-end justify-between gap-6">
           <div>
@@ -144,8 +141,9 @@ export function MeetThePups({ doors }: { doors: Door[] }) {
           </ol>
         </div>
         <div className="floor" aria-hidden>
-          <div ref={walker} className="floor__walker hidden min-[900px]:block">
-            <PupStop pose="sit" facing="right" className="w-[140px]" />
+          {/* While pinned the pup stays put and walks in place as the doors slide past */}
+          <div className="floor__walker hidden min-[900px]:block">
+            <PupStop pose={pinned ? "walk" : "sit"} act={pinned ? "treadmill" : undefined} facing="right" />
           </div>
         </div>
       </div>

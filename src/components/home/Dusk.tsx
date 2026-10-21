@@ -9,7 +9,7 @@ import { TESTIMONIAL } from "@/lib/families";
 export function Dusk({ families }: { families: Family[] }) {
   return (
     <>
-      <section className="passport-bg pt-12" aria-labelledby="trust-title">
+      <section data-pup-scene className="passport-bg pt-12" aria-labelledby="trust-title">
         <div className="page-wrap max-w-[1240px]">
           <Passport
             id="trust-title"
@@ -25,7 +25,7 @@ export function Dusk({ families }: { families: Family[] }) {
         <Skyline />
       </section>
 
-      <section className="dusk pt-16 text-milk" id="families" aria-labelledby="families-title">
+      <section data-pup-scene className="dusk pt-16 text-milk" id="families" aria-labelledby="families-title">
         <div className="page-wrap">
           <div className="grid items-end gap-12 md:grid-cols-[1.1fr_1fr]">
             <div data-reveal>
@@ -68,6 +68,9 @@ export function Dusk({ families }: { families: Family[] }) {
                 style={{ background: "linear-gradient(90deg, var(--color-toffee-deep) 49%, var(--color-cocoa) 49% 51%, var(--color-toffee-deep) 51%)" }}
                 aria-hidden
               />
+              <div className="absolute bottom-0 left-[calc(50%+56px)] hidden w-[clamp(8rem,11vw,11rem)] sm:block">
+                <PupStop pose="sit" facing="right" />
+              </div>
               <Link href="/happy-families" className="btn relative z-10">
                 See every happy family
               </Link>
