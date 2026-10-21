@@ -203,3 +203,110 @@
   backdrop-filter: blur(10px);
   border-top: 2px solid var(--color-cocoa);
 }
+
+/* ---- Dynamic Pup Runner & Stops ---- */
+.pup-stop {
+  position: relative;
+  pointer-events: none;
+}
+html[data-pup="live"] .pup-stop > .pup-buddy {
+  visibility: hidden;
+}
+.pup-buddy {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+.pup-buddy > svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.pup-buddy > svg :is(path, ellipse, circle) {
+  pointer-events: visiblePainted;
+  cursor: pointer;
+}
+.pup-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  contain: layout paint style;
+  overflow: clip;
+}
+.pup-layer[data-front="false"] {
+  z-index: 15;
+}
+.pup-actor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+.pup-actor__body {
+  transform-origin: 0 0;
+  width: 300px;
+}
+.pup-actor__body > svg {
+  width: 300px;
+  height: 240px;
+  display: block;
+}
+.pup-actor .pup-actor__body > svg :is(path, ellipse, circle) {
+  pointer-events: visiblePainted;
+  cursor: pointer;
+}
+.pup-bubble-at {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.pup-bubble {
+  position: absolute;
+  border: 2.5px solid var(--color-cocoa);
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  font-family: var(--font-hand);
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transform-origin: 30% 100%;
+  transition: scale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.18s ease-out;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 0 var(--color-cocoa);
+  bottom: 180px;
+  left: 150px;
+  pointer-events: none;
+  font-size: 0.9375rem;
+  scale: 0.4;
+}
+.pup-bubble[data-show="true"] {
+  opacity: 1;
+  scale: 1;
+}
+.pup-prints {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: clip;
+}
+.pup-prints > svg {
+  opacity: 0;
+  width: 15px;
+  height: 15px;
+  fill: var(--color-toffee);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.pup-heart {
+  position: absolute;
+  color: #e98c8c;
+  font-size: 24px;
+  pointer-events: none;
+  z-index: 40;
+  user-select: none;
+  font-weight: bold;
+}

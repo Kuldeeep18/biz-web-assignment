@@ -1,3 +1,4 @@
+import { PupStop } from "@/components/pup/PupStop";
 import Link from "next/link";
 import { Photo } from "@/components/ui/Photo";
 import { Passport } from "@/components/ui/Passport";

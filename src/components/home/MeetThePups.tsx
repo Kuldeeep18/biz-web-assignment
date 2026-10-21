@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Paw } from "@/components/illustrations/Icons";
-import { Pup } from "@/components/illustrations/Pup";
+import { PupStop } from "@/components/pup/PupStop";
 import { Photo } from "@/components/ui/Photo";
 import type { Photo as PhotoData } from "@/lib/puppies";
 
@@ -112,7 +112,7 @@ export function MeetThePups({ doors }: { doors: Door[] }) {
         </header>
 
         <div className="meet__viewport mt-14 pt-6">
-          <ol ref={track} className="meet__track">
+          <ol ref={track} data-treadmill className="meet__track">
             {doors.map((d, i) => (
               <li key={d.slug} className="door" data-slug={d.slug} data-open={open.has(d.slug)}>
                 <Link href={`/puppies/${d.slug}`} aria-label={d.label}>
@@ -145,7 +145,7 @@ export function MeetThePups({ doors }: { doors: Door[] }) {
         </div>
         <div className="floor" aria-hidden>
           <div ref={walker} className="floor__walker hidden min-[900px]:block">
-            <Pup pose="walk" />
+            <PupStop pose="sit" facing="right" className="w-[140px]" />
           </div>
         </div>
       </div>

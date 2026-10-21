@@ -1,3 +1,4 @@
+import { PupStop } from "@/components/pup/PupStop";
 export type Perk = { stamp: string; text: string; tone?: "green"; round?: boolean };
 
 /** An open passport: title on the left page, ink stamps on the right. Stamps thump in on reveal. */
@@ -9,6 +10,7 @@ export function Passport({ title, perks, id }: { title: string; perks: Perk[]; i
         <h2 id={id} className="font-plush mt-4 max-w-[7em] text-[clamp(2.4rem,4vw,3.6rem)]">
           {title}
         </h2>
+        <div className="w-24 mt-6 hidden sm:block"><PupStop pose="sit" facing="right" /></div>
       </div>
       <ul
         className={`book__page book__page--r grid content-center gap-x-6 gap-y-9 p-8 md:p-12 ${perks.length > 3 ? "sm:grid-cols-2" : "sm:grid-cols-3 md:grid-cols-1 lg:grid-cols-3"}`}

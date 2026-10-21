@@ -1,3 +1,4 @@
+import { PupStop } from "@/components/pup/PupStop";
 import Link from "next/link";
 import { Stars } from "@/components/illustrations/Stars";
 import type { QA } from "@/lib/faq";
@@ -31,6 +32,7 @@ export function NightFaq({ questions }: { questions: QA[] }) {
           <span className="font-scrawl ml-12 hidden rotate-12 animate-bounce text-6xl text-honey md:block" aria-hidden>
             ?
           </span>
+          <div className="w-28 hidden md:block"><PupStop pose="sit" act="tilt" facing="right" /></div>
         </div>
         <div>
           {questions.map((q) => (

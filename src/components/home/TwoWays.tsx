@@ -1,3 +1,4 @@
+import { PupStop } from "@/components/pup/PupStop";
 import Link from "next/link";
 import type { Photo } from "@/lib/puppies";
 import { Slideshow } from "@/components/ui/Slideshow";
@@ -12,6 +13,7 @@ export function TwoWays({ showroom }: { showroom: Photo[] }) {
 
         <div className="relative mx-auto mt-10 grid max-w-[1080px] gap-y-16 min-[900px]:grid-cols-2 min-[900px]:gap-x-28">
           <span className="post hidden min-[900px]:block" aria-hidden />
+          <div className="absolute top-[-30px] left-1/2 -translate-x-1/2 z-20 hidden min-[900px]:block pointer-events-none"><PupStop pose="sit" facing="right" className="w-24" /></div>
 
           <article data-reveal className="flex flex-col items-center gap-6 min-[900px]:items-end min-[900px]:text-right">
             <div className="sign sign--left min-[900px]:-mr-[44px] min-[900px]:rotate-[1.5deg]">

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Pup } from "@/components/illustrations/Pup";
+import { PupStop } from "@/components/pup/PupStop";
 import { Photo } from "@/components/ui/Photo";
 import type { Photo as PhotoData } from "@/lib/puppies";
 
@@ -68,8 +68,7 @@ export function HeroArches({ pool }: { pool: Item[] }) {
 function Mascot() {
   return (
     <li className="hero-mascot" aria-hidden>
-      <span className="hero-mascot__bubble">hm?</span>
-      <Pup pose="face" />
+      <PupStop pose="peek" facing="right" act="peekaboo" behind lane className="w-full" />
     </li>
   );
 }

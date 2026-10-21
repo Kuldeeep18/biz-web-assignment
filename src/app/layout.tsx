@@ -3,6 +3,7 @@ import { Figtree, Fraunces, Shantell_Sans } from "next/font/google";
 import { ActionBar, Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SITE } from "@/lib/site";
+import { PupJourney } from "@/components/pup/PupJourney";
 import "./globals.css";
 
 const figtree = Figtree({ variable: "--font-figtree", subsets: ["latin"] });
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <Header />
+        <PupJourney />
         <main id="main" tabIndex={-1} className="relative pt-[var(--header-h)] outline-none">
           {children}
         </main>

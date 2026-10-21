@@ -1,5 +1,6 @@
 "use client";
 
+import { PupStop } from "@/components/pup/PupStop";
 import { useEffect, useRef, useState } from "react";
 import { Photo } from "@/components/ui/Photo";
 import type { Photo as PhotoData } from "@/lib/puppies";
@@ -38,6 +39,7 @@ export function Porch({ photo }: { photo: PhotoData }) {
           <Photo photo={photo} sizes="200px" alt="Max, waiting inside" className="!object-top" />
           <span className="porch-door__leaf" aria-hidden />
         </div>
+        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 z-20 w-32 hidden sm:block"><PupStop pose="bow" facing="right" /></div>
         <span className="porch-lamp absolute top-28 left-[calc(50%+104px)] h-10 w-[26px] rounded-lg sm:top-36 sm:left-[calc(50%+140px)]" aria-hidden />
         <Plant className="absolute bottom-0 left-[4%] w-[76px] sm:left-[calc(50%-210px)]" />
         <Plant className="absolute right-[4%] bottom-0 w-[76px] -scale-x-100 sm:right-[calc(50%-210px)]" />
