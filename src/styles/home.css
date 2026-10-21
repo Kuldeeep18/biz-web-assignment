@@ -1,0 +1,654 @@
+/* Home page scenes. The page drifts from morning (milk) through sunset to night. */
+
+/* ---- Hero ---- */
+.hero {
+  background:
+    radial-gradient(ellipse 38% 40% at 50% 85%, color-mix(in oklab, var(--color-honey-soft) 85%, transparent), transparent 70%),
+    var(--color-milk);
+}
+.arches {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(10px, 3vw, 48px);
+  padding-inline: var(--gutter);
+  margin-bottom: -26px;
+}
+.arch {
+  position: relative;
+  flex: 0 0 auto;
+}
+.arch__photo {
+  position: relative;
+  display: block;
+  width: var(--w);
+  height: var(--h);
+  border: 3px solid var(--color-cocoa);
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+  overflow: hidden;
+  background: var(--color-honey-soft);
+  translate: 0 100%;
+  animation: rise 800ms var(--ease-silk) forwards;
+  animation-delay: calc(var(--i) * 90ms + 200ms);
+  transition: transform 300ms var(--ease-silk);
+}
+.arch:hover .arch__photo,
+.arch__photo:focus-visible {
+  transform: translateY(-10px);
+}
+@media (max-width: 639px) {
+  .arch__photo {
+    width: calc(var(--w) * 0.78);
+    height: calc(var(--h) * 0.78);
+  }
+  .arch__label {
+    bottom: calc(var(--h) * 0.78 + 14px);
+  }
+}
+@keyframes rise {
+  to {
+    translate: 0 0;
+  }
+}
+.arch__label {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--h) + 14px);
+  z-index: 2;
+  translate: -50% 0;
+  rotate: -3deg;
+  padding: 0.2rem 0.75rem;
+  border: 2px solid var(--color-cocoa);
+  border-radius: 0.7rem;
+  background: var(--color-milk);
+  font-family: var(--font-hand);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 var(--color-cocoa);
+  opacity: 0;
+  scale: 0.7;
+  transition:
+    opacity 180ms,
+    scale 220ms var(--ease-pounce);
+  pointer-events: none;
+}
+.arch[data-tagged="true"] .arch__label,
+.arch:hover .arch__label,
+.arch:focus-within .arch__label {
+  opacity: 1;
+  scale: 1;
+}
+.hero-mascot {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(110px, 12vw, 172px);
+  margin-bottom: -4px;
+  translate: 0 100%;
+  animation: rise 800ms var(--ease-silk) 120ms forwards;
+}
+.hero-mascot__bubble {
+  position: absolute;
+  left: 50%;
+  top: -2.6rem;
+  translate: -50% 0;
+  padding: 0.1rem 0.6rem;
+  border: 2px solid var(--color-cocoa);
+  border-radius: 0.9rem;
+  background: var(--color-milk);
+  font-family: var(--font-hand);
+  font-size: 0.875rem;
+  box-shadow: 2px 2px 0 var(--color-cocoa);
+  animation: bubble 7s ease-in-out infinite 2s;
+  opacity: 0;
+}
+@keyframes bubble {
+  0%, 100% { opacity: 0; scale: 0.6; }
+  8%, 30% { opacity: 1; scale: 1; }
+  38% { opacity: 0; scale: 0.6; }
+}
+.fence {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 42px;
+}
+.fence .scallop {
+  fill: var(--color-cream);
+  stroke: var(--color-cocoa);
+  stroke-width: 3;
+}
+.fence .dash {
+  fill: none;
+  stroke: var(--color-cocoa-soft);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+  opacity: 0.6;
+}
+.lattice {
+  height: clamp(80px, 9vw, 120px);
+  margin-top: -2px;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 34px, color-mix(in oklab, var(--color-cocoa) 10%, transparent) 34px 35.5px),
+    repeating-linear-gradient(-45deg, transparent 0 34px, color-mix(in oklab, var(--color-cocoa) 10%, transparent) 34px 35.5px),
+    var(--color-cream);
+  mask-image: linear-gradient(#000 40%, transparent);
+}
+
+/* ---- Meet the pups: a street of doors that scrolls sideways ---- */
+.meet {
+  position: relative;
+  background: var(--color-cream);
+}
+.meet__viewport {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.meet__viewport::-webkit-scrollbar {
+  display: none;
+}
+.meet__track {
+  display: flex;
+  gap: clamp(28px, 4vw, 88px);
+  width: max-content;
+  padding-inline: var(--gutter);
+  will-change: transform;
+}
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  .meet[data-pinned="true"] .meet__stage {
+    position: sticky;
+    top: var(--header-h);
+    height: calc(100svh - var(--header-h));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .meet[data-pinned="true"] .meet__head {
+    margin-top: auto;
+  }
+  .meet[data-pinned="true"] .meet__viewport {
+    overflow: visible;
+    margin-top: auto;
+  }
+}
+.door {
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+  width: 216px;
+  text-align: center;
+}
+.door__frame {
+  position: relative;
+  perspective: 900px;
+}
+.door__clip {
+  position: relative;
+  height: 272px;
+  border: 3px solid var(--color-cocoa);
+  border-bottom: 0;
+  border-radius: 108px 108px 0 0;
+  overflow: hidden;
+  background: var(--color-honey-soft);
+  transform-style: preserve-3d;
+}
+.door__clip img {
+  transition: scale 300ms var(--ease-silk);
+}
+.door a:hover .door__clip img {
+  scale: 1.05;
+}
+.door__leaf {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--door, var(--color-cocoa-soft));
+  transform-origin: 0 50%;
+  transition: transform 900ms cubic-bezier(0.5, 0, 0.2, 1);
+}
+.door__leaf::before {
+  content: "";
+  position: absolute;
+  inset: 36px 28px 0;
+  border: 2px solid color-mix(in oklab, var(--color-milk) 30%, transparent);
+  border-bottom: 0;
+  border-radius: 80px 80px 0 0;
+}
+.door__leaf::after {
+  content: "";
+  position: absolute;
+  right: 26px;
+  top: 56%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-honey);
+  border: 2px solid var(--color-cocoa);
+}
+.door__paw {
+  position: absolute;
+  left: 50%;
+  top: 66px;
+  width: 34px;
+  translate: -50% 0;
+  color: color-mix(in oklab, var(--color-milk) 45%, transparent);
+}
+.door[data-open="true"] .door__leaf,
+.door a:hover .door__leaf {
+  transform: rotateY(-78deg);
+}
+.door .tag {
+  position: absolute;
+  right: -18px;
+  top: 44px;
+  z-index: 2;
+}
+.floor {
+  position: relative;
+  height: 64px;
+  border-top: 3px solid var(--color-cocoa);
+  box-shadow: inset 0 6px 0 color-mix(in oklab, var(--color-honey-soft) 70%, var(--color-honey));
+  background:
+    repeating-linear-gradient(90deg, transparent 0 175px, color-mix(in oklab, var(--color-toffee) 30%, transparent) 175px 176px),
+    linear-gradient(var(--color-honey), color-mix(in oklab, var(--color-honey) 85%, var(--color-toffee)));
+}
+.floor__walker {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  width: 140px;
+  will-change: transform;
+}
+
+/* ---- Two ways ---- */
+.ways {
+  background: linear-gradient(var(--color-cream), var(--color-honey-soft) 60%, color-mix(in oklab, var(--color-honey-soft) 70%, var(--color-honey)));
+}
+.post {
+  position: absolute;
+  left: 50%;
+  top: -24px;
+  bottom: -36px;
+  width: 16px;
+  translate: -50% 0;
+  background: var(--color-honey);
+  border: 3px solid var(--color-cocoa);
+  border-radius: 5px 5px 0 0;
+}
+.sign {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 3px;
+  background: var(--color-cocoa);
+  filter: drop-shadow(0 5px 0 color-mix(in oklab, var(--color-cocoa) 25%, transparent));
+}
+.sign > * {
+  display: block;
+  padding: 0.75rem 2rem;
+  background: var(--color-honey);
+  white-space: nowrap;
+}
+.sign--left,
+.sign--left > * {
+  clip-path: polygon(28px 0, 100% 0, 100% 100%, 28px 100%, 0 50%);
+}
+.sign--left > * {
+  padding-left: 3rem;
+}
+.sign--right,
+.sign--right > * {
+  clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 50%, calc(100% - 28px) 100%, 0 100%);
+}
+.sign--right > * {
+  padding-right: 3rem;
+}
+.skyline-line path,
+.skyline-line line {
+  fill: none;
+  stroke: color-mix(in oklab, var(--color-cocoa-soft) 70%, transparent);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+.awning {
+  height: 26px;
+  margin-inline: -8px;
+  border: 3px solid var(--color-cocoa);
+  border-radius: 5px;
+  background: repeating-linear-gradient(90deg, var(--color-toffee-deep) 0 18px, var(--color-milk) 18px 36px);
+}
+.flight .route {
+  fill: none;
+  stroke: var(--color-toffee-deep);
+  stroke-width: 2.5;
+  stroke-dasharray: 2 7;
+  stroke-linecap: round;
+}
+
+/* ---- Journey: phone chat ---- */
+.journey {
+  background: linear-gradient(color-mix(in oklab, var(--color-honey-soft) 70%, var(--color-honey)), color-mix(in oklab, var(--color-honey-soft) 40%, var(--color-honey)));
+}
+.step-dot {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-cocoa);
+  background: var(--color-milk);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  transition:
+    background-color 300ms,
+    color 300ms,
+    box-shadow 300ms;
+}
+[data-active="true"] > .step-dot {
+  background: var(--color-toffee-deep);
+  color: var(--color-milk);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-toffee-deep) 25%, transparent);
+}
+.phone {
+  width: min(100%, 360px);
+  padding: 10px;
+  border-radius: 29px;
+  background: var(--color-cocoa);
+  rotate: 3deg;
+  box-shadow: 12px 12px 0 color-mix(in oklab, var(--color-toffee-deep) 35%, transparent);
+}
+.phone__screen {
+  display: flex;
+  flex-direction: column;
+  height: min(600px, 68vh);
+  border-radius: 19px;
+  overflow: hidden;
+  background: var(--color-cream);
+}
+.chat {
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background-image: radial-gradient(color-mix(in oklab, var(--color-toffee) 12%, transparent) 18%, transparent 20%);
+  background-size: 28px 28px;
+}
+.chat > * {
+  flex-shrink: 0;
+}
+.chat [data-at] {
+  transition:
+    opacity 300ms var(--ease-silk),
+    translate 300ms var(--ease-silk);
+}
+.chat [data-at][data-hidden="true"] {
+  display: none;
+}
+.chat [data-at][data-entering="true"] {
+  opacity: 0;
+  translate: 0 8px;
+}
+.msg {
+  max-width: 86%;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--color-cocoa);
+  border-radius: 0.7rem;
+  background: var(--color-milk);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  box-shadow: 2px 2px 0 var(--color-cocoa);
+}
+.msg--out {
+  align-self: flex-end;
+  background: color-mix(in oklab, var(--color-leaf) 18%, var(--color-milk));
+  border-bottom-right-radius: 2px;
+}
+.msg--in {
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+.typing i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cocoa);
+  animation: typing 1.2s infinite;
+}
+.typing i:nth-child(2) { animation-delay: 0.15s; }
+.typing i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes typing {
+  30% {
+    translate: 0 -4px;
+    opacity: 0.5;
+  }
+}
+
+/* ---- Passport ---- */
+.passport-bg {
+  background: linear-gradient(color-mix(in oklab, var(--color-honey-soft) 40%, var(--color-honey)), color-mix(in oklab, var(--color-toffee) 80%, var(--color-honey-soft)));
+}
+.book {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 12px;
+  background: var(--color-toffee-deep);
+  border: 3px solid var(--color-cocoa);
+  border-radius: 1rem;
+  box-shadow: 10px 10px 0 color-mix(in oklab, var(--color-cocoa) 22%, transparent);
+  rotate: -0.6deg;
+}
+.book__page {
+  position: relative;
+  overflow: hidden;
+  border: 3px solid var(--color-cocoa);
+  background:
+    radial-gradient(circle at 50% 100%, transparent 15px, color-mix(in oklab, var(--color-cocoa) 6%, transparent) 16px 17px, transparent 18px) 0 0 / 36px 18px,
+    var(--color-milk);
+}
+.book__page--l {
+  border-radius: 8px 0 0 8px;
+  border-right-width: 2px;
+}
+.book__page--r {
+  border-radius: 0 8px 8px 0;
+  border-left-width: 2px;
+}
+@media (max-width: 899px) {
+  .book {
+    grid-template-columns: 1fr;
+    rotate: 0deg;
+  }
+  .book__page--l {
+    border-radius: 8px 8px 0 0;
+    border-right-width: 3px;
+    border-bottom-width: 2px;
+  }
+  .book__page--r {
+    border-radius: 0 0 8px 8px;
+    border-left-width: 3px;
+    border-top-width: 2px;
+  }
+}
+.stamp {
+  --stamp: var(--color-toffee-deep);
+  display: inline-block;
+  max-width: 13em;
+  padding: 0.5rem 0.75rem;
+  border: 3px double var(--stamp);
+  border-radius: 8px;
+  color: var(--stamp);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  rotate: var(--r, -6deg);
+  opacity: 0.9;
+}
+.stamp--green {
+  --stamp: var(--color-leaf);
+}
+.stamp--round {
+  border-radius: 999px;
+  padding-inline: 1.25rem;
+}
+/* stamps thump onto the page as they scroll in */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .stamp {
+      animation: stamp-in linear both;
+      animation-timeline: view();
+      animation-range: entry 30% cover 35%;
+    }
+  }
+}
+@keyframes stamp-in {
+  0% {
+    scale: 1.8;
+    opacity: 0;
+  }
+  70% {
+    scale: 0.94;
+    opacity: 0.9;
+  }
+  100% {
+    scale: 1;
+    opacity: 0.9;
+  }
+}
+
+/* ---- Dusk: skyline and the families wall ---- */
+.dusk {
+  background: linear-gradient(color-mix(in oklab, var(--color-toffee-deep) 70%, var(--color-toffee)), color-mix(in oklab, var(--color-toffee-deep) 60%, var(--color-cocoa-soft)));
+}
+.quote-bubble {
+  position: relative;
+  border: 3px solid var(--color-cocoa);
+  border-radius: 1rem;
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  box-shadow: var(--shadow-hard);
+  rotate: 1.5deg;
+}
+.quote-bubble::after {
+  content: "";
+  position: absolute;
+  left: 24px;
+  bottom: -16px;
+  width: 26px;
+  height: 26px;
+  background: var(--color-milk);
+  border-right: 3px solid var(--color-cocoa);
+  border-bottom: 3px solid var(--color-cocoa);
+  rotate: 45deg;
+}
+.brick-wall {
+  border: 3px solid var(--color-cocoa);
+  border-bottom: 0;
+  border-top: 12px solid var(--color-cocoa);
+  border-radius: 5px 5px 0 0;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 34px, color-mix(in oklab, var(--color-cocoa) 18%, transparent) 34px 36px),
+    color-mix(in oklab, var(--color-cocoa-soft) 80%, var(--color-toffee-deep));
+}
+.polaroid {
+  --r: -3deg;
+  position: relative;
+  padding: 8px 8px 0;
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  box-shadow: 0 10px 18px color-mix(in oklab, var(--color-night) 40%, transparent);
+  rotate: var(--r);
+  transition:
+    rotate 300ms var(--ease-silk),
+    translate 300ms var(--ease-silk);
+}
+.polaroid:hover {
+  rotate: 0deg;
+  translate: 0 -6px;
+}
+.polaroid::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  z-index: 1;
+  width: 76px;
+  height: 22px;
+  translate: -50% 0;
+  rotate: calc(var(--r) * -2);
+  background: color-mix(in oklab, var(--tape, var(--color-honey-soft)) 75%, transparent);
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--color-cocoa) 20%, transparent);
+}
+
+/* ---- Night ---- */
+.night {
+  background: linear-gradient(var(--color-cocoa-soft), var(--color-cocoa));
+}
+.night-deep {
+  background: linear-gradient(var(--color-cocoa), var(--color-night));
+}
+.porch-wall {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 22px, color-mix(in oklab, var(--color-cocoa) 30%, transparent) 22px 24px),
+    color-mix(in oklab, var(--color-cocoa-soft) 85%, var(--color-toffee-deep));
+}
+.porch-door {
+  perspective: 900px;
+  box-shadow:
+    0 0 0 10px color-mix(in oklab, var(--color-toffee-deep) 70%, var(--color-cocoa)),
+    0 0 0 13px var(--color-cocoa);
+}
+.porch-door__leaf {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--color-toffee-deep) 49.4%, var(--color-cocoa) 49.4% 50.6%, var(--color-toffee-deep) 50.6%);
+  transform-origin: 0 50%;
+  transition: transform 1100ms cubic-bezier(0.5, 0, 0.2, 1);
+}
+.porch-door__leaf::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  width: 52px;
+  height: 52px;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: var(--color-honey-soft);
+  border: 4px solid var(--color-cocoa);
+  box-shadow: 0 0 24px var(--color-honey-soft);
+}
+.porch-door__leaf::after {
+  content: "";
+  position: absolute;
+  right: 24px;
+  top: 55%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-honey);
+  border: 3px solid var(--color-cocoa);
+}
+.porch:hover .porch-door__leaf,
+.porch[data-open="true"] .porch-door__leaf {
+  transform: rotateY(-82deg);
+}
+.porch-lamp {
+  background: var(--color-honey-soft);
+  border: 3px solid var(--color-cocoa);
+  box-shadow: 0 0 36px 10px color-mix(in oklab, var(--color-honey-soft) 45%, transparent);
+}
+.doormat {
+  background: repeating-linear-gradient(90deg, var(--color-honey) 0 6px, var(--color-honey-soft) 6px 12px);
+}

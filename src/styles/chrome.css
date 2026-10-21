@@ -1,0 +1,205 @@
+/* Header, footer, mobile action bar, and the mascot's paint */
+
+/* ---- Mascot ---- */
+.pup .pup-outline circle {
+  fill: var(--color-cocoa);
+  stroke: var(--color-cocoa);
+  stroke-width: 6;
+}
+.pup .pup-fur circle {
+  fill: var(--color-honey);
+}
+.pup .pup-far .pup-fur circle {
+  fill: color-mix(in oklab, var(--color-honey) 82%, var(--color-toffee));
+}
+.pup-muzzle {
+  fill: var(--color-honey-soft);
+}
+.pup-cheek {
+  fill: var(--color-blush);
+}
+.pup-ink {
+  fill: var(--color-cocoa);
+}
+.pup-shine {
+  fill: var(--color-milk);
+}
+.pup-line {
+  fill: none;
+  stroke: var(--color-cocoa);
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pup-collar {
+  fill: none;
+  stroke: var(--color-toffee-deep);
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+.pup-tagdisc {
+  fill: var(--color-honey-soft);
+  stroke: var(--color-cocoa);
+  stroke-width: 2.5;
+}
+.pup-shadow {
+  fill: color-mix(in oklab, var(--color-cocoa) 14%, transparent);
+}
+.pup-eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pup-blink 4.6s infinite;
+}
+.pup-bob {
+  animation: pup-bob 3s ease-in-out infinite;
+  transform-origin: 100px 160px;
+}
+.pup-tail {
+  transform-origin: 140px 190px;
+  animation: pup-wag 0.9s ease-in-out infinite;
+}
+.pup--walk .pup-leg {
+  animation: pup-step 0.6s ease-in-out infinite;
+}
+.pup--walk .pup-leg--b {
+  animation-delay: -0.3s;
+}
+.pup--still .pup-leg {
+  animation: none;
+}
+@keyframes pup-blink {
+  0%, 93%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.1); }
+}
+@keyframes pup-bob {
+  50% { transform: rotate(-3deg); }
+}
+@keyframes pup-wag {
+  50% { transform: rotate(16deg); }
+}
+@keyframes pup-step {
+  0%, 100% { transform: rotate(14deg); }
+  50% { transform: rotate(-14deg); }
+}
+
+/* ---- Header ---- */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  height: var(--header-h);
+  background: var(--color-milk);
+  transition: box-shadow 300ms;
+}
+/* scalloped hem hanging under the header */
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 12px;
+  background: radial-gradient(circle at 18px 0, var(--color-milk) 12px, transparent 12.5px) 0 0 / 36px 12px repeat-x;
+  filter: drop-shadow(0 2px 0 color-mix(in oklab, var(--color-cocoa) 8%, transparent));
+  pointer-events: none;
+}
+.nav-link {
+  position: relative;
+  padding-block: 0.4rem;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  transition: color 180ms;
+}
+.nav-link:hover,
+.nav-link[aria-current="page"] {
+  color: var(--color-toffee-deep);
+}
+.nav-link__paw {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 0.7rem;
+  translate: -50% 0;
+  color: var(--color-toffee);
+  scale: 0;
+  transition: scale 220ms var(--ease-pounce);
+}
+.nav-link[aria-current="page"] .nav-link__paw {
+  scale: 1;
+}
+
+.menu-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-milk);
+  padding: 1.25rem var(--gutter) calc(2rem + env(safe-area-inset-bottom));
+  translate: 0 -100%;
+  visibility: hidden;
+  transition:
+    translate 380ms var(--ease-snap),
+    visibility 0s linear 380ms;
+}
+.menu-sheet[data-open="true"] {
+  translate: 0 0;
+  visibility: visible;
+  transition: translate 380ms var(--ease-snap);
+}
+
+/* ---- Footer ---- */
+/* The wave overlaps the bottom of whichever section comes before the footer */
+.site-footer {
+  position: relative;
+  background: var(--color-night);
+  color: var(--color-milk);
+  padding-bottom: calc(var(--bar-h) + 1.5rem);
+}
+.wave-top {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% - 1px);
+  width: 100%;
+  height: 4.5rem;
+  color: var(--color-night);
+}
+.moon {
+  position: absolute;
+  right: 8%;
+  top: 2.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  box-shadow: -0.75rem 0.5rem 0 0 var(--color-honey-soft);
+  filter: drop-shadow(0 0 14px color-mix(in oklab, var(--color-honey-soft) 55%, transparent));
+  rotate: -20deg;
+}
+.stars i {
+  position: absolute;
+  font-style: normal;
+  color: var(--color-honey);
+  font-size: var(--s, 10px);
+  opacity: 0.7;
+  animation: twinkle 3s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+@keyframes twinkle {
+  50% {
+    opacity: 0.15;
+    scale: 0.7;
+  }
+}
+
+/* ---- Phone action bar ---- */
+.action-bar {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 40;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.6rem var(--gutter) calc(0.6rem + env(safe-area-inset-bottom));
+  background: color-mix(in oklab, var(--color-milk) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-top: 2px solid var(--color-cocoa);
+}

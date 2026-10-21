@@ -1,0 +1,272 @@
+/* Inner pages */
+
+/* ---- Puppies: a sketchbook page ---- */
+.sketchbook {
+  background:
+    radial-gradient(color-mix(in oklab, var(--color-cocoa) 7%, transparent) 1px, transparent 1.5px) 0 0 / 22px 22px,
+    var(--color-milk);
+}
+.filter-panel {
+  border: 3px solid var(--color-cocoa);
+  border-radius: 1.25rem;
+  background: var(--color-milk);
+  box-shadow: 6px 6px 0 color-mix(in oklab, var(--color-cocoa) 18%, transparent);
+}
+.filter-panel__tape {
+  position: absolute;
+  top: -14px;
+  left: 1.5rem;
+  width: 70px;
+  height: 22px;
+  rotate: -4deg;
+  background: color-mix(in oklab, var(--color-honey) 70%, transparent);
+}
+.chip {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border: 2px solid var(--color-cocoa);
+  border-radius: 999px;
+  background: var(--color-milk);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  box-shadow: 0 3px 0 -0.5px var(--color-cocoa);
+  transition:
+    background-color 150ms,
+    transform 150ms var(--ease-silk);
+}
+.chip:hover {
+  background: var(--color-honey-soft);
+  transform: translateY(-1px);
+}
+.chip[aria-current="true"] {
+  background: var(--color-cocoa);
+  color: var(--color-milk);
+}
+
+.sketch__wash {
+  position: absolute;
+  inset: 4% 0 0 6%;
+  border-radius: 50%;
+  background: var(--wash);
+  transition: translate 300ms var(--ease-silk);
+}
+.sketch:hover .sketch__wash {
+  translate: -4px 4px;
+}
+.sketch__photo {
+  position: absolute;
+  inset: 4% 6% 6% 4%;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: scale 300ms var(--ease-silk);
+}
+.sketch:hover .sketch__photo {
+  scale: 1.03;
+}
+.sketch__ring {
+  position: absolute;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
+  overflow: visible;
+  pointer-events: none;
+}
+.sketch__ring path {
+  fill: none;
+  stroke: var(--color-cocoa);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+/* ---- Puppy profile ---- */
+.story-page {
+  border: 3px solid var(--color-cocoa);
+  border-radius: 1.25rem;
+  box-shadow:
+    6px 6px 0 var(--color-milk),
+    9px 9px 0 var(--color-cocoa);
+}
+.bookmark {
+  position: absolute;
+  left: 0.6rem;
+  width: 0.7rem;
+  background: var(--color-toffee);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 8px), 0 100%);
+}
+.thumb[aria-current="true"] {
+  border-color: var(--color-toffee-deep);
+  rotate: -3deg;
+  translate: 0 -4px;
+}
+.hex-paper {
+  background:
+    radial-gradient(circle at 50% 100%, transparent 15px, color-mix(in oklab, var(--color-cocoa) 6%, transparent) 16px 17px, transparent 18px) 0 0 / 36px 18px,
+    var(--color-cream);
+}
+.paw-trail {
+  background: radial-gradient(circle, var(--color-honey) 2.5px, transparent 3px) 0 50% / 14px 8px repeat-x;
+}
+.postage {
+  border: 3px dashed var(--color-toffee);
+  border-radius: 0.5rem;
+  background: var(--color-honey-soft);
+  box-shadow: 0 0 0 4px var(--color-honey-soft);
+}
+
+/* ---- Gone home: admission tickets ---- */
+.ticket {
+  --notch: 10px;
+  position: relative;
+  display: flex;
+  border: 3px solid var(--color-cocoa);
+  border-radius: 0.9rem;
+  background: var(--color-milk);
+  box-shadow: 5px 5px 0 color-mix(in oklab, var(--color-cocoa) 18%, transparent);
+  transition:
+    rotate 300ms var(--ease-silk),
+    translate 300ms var(--ease-silk);
+}
+.ticket:hover {
+  rotate: 0deg !important;
+  translate: 0 -4px;
+}
+.ticket__stub {
+  display: grid;
+  place-items: center;
+  border-left: 3px dashed var(--color-cocoa);
+  background: var(--color-honey);
+  border-radius: 0 0.6rem 0.6rem 0;
+}
+.ticket__stub span {
+  writing-mode: vertical-rl;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+.ticket-booth__awning {
+  background: repeating-linear-gradient(90deg, var(--color-toffee) 0 16px, var(--color-milk) 16px 32px);
+}
+
+/* ---- Happy families wall ---- */
+.wall-bg {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 46px, color-mix(in oklab, var(--color-toffee) 7%, transparent) 46px 47px),
+    linear-gradient(var(--color-milk), var(--color-honey-soft) 30%, var(--color-honey-soft));
+}
+.sticky-note {
+  background:
+    repeating-linear-gradient(transparent 0 23px, color-mix(in oklab, var(--color-sky) 70%, transparent) 23px 24px),
+    var(--color-milk);
+  box-shadow: 0 10px 20px color-mix(in oklab, var(--color-cocoa) 15%, transparent);
+  rotate: 2deg;
+}
+
+/* ---- FAQ: corkboard ---- */
+.faq-bg {
+  background: linear-gradient(var(--color-toffee-deep), var(--color-cocoa-soft) 70%, var(--color-cocoa));
+}
+.corkboard {
+  border: 10px solid var(--color-cocoa-soft);
+  border-radius: 1rem;
+  outline: 3px solid var(--color-cocoa);
+  background:
+    radial-gradient(color-mix(in oklab, var(--color-cocoa) 18%, transparent) 1px, transparent 1.5px) 0 0 / 7px 7px,
+    radial-gradient(color-mix(in oklab, var(--color-milk) 16%, transparent) 1px, transparent 1.5px) 3px 4px / 9px 9px,
+    color-mix(in oklab, var(--color-honey) 55%, var(--color-toffee));
+  box-shadow: inset 0 0 0 3px var(--color-cocoa), 10px 10px 0 color-mix(in oklab, var(--color-night) 35%, transparent);
+}
+.note {
+  position: relative;
+  border: 2px solid var(--color-cocoa);
+  border-radius: 0.3rem;
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  box-shadow: 0 6px 12px color-mix(in oklab, var(--color-night) 35%, transparent);
+  rotate: var(--tilt);
+  transition: rotate 300ms var(--ease-silk);
+}
+.note[data-open="true"] {
+  rotate: 0deg;
+}
+/* folded corner */
+.note::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, var(--color-cream) 50%, transparent 50%);
+  border-left: 2px solid var(--color-cocoa);
+  border-top: 2px solid var(--color-cocoa);
+}
+.note__pin {
+  position: absolute;
+  left: 50%;
+  top: -9px;
+  width: 16px;
+  height: 16px;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: var(--pin);
+  border: 2px solid var(--color-cocoa);
+  box-shadow: inset -3px -3px 0 color-mix(in oklab, var(--color-cocoa) 25%, transparent);
+}
+.note__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 350ms var(--ease-silk);
+}
+.note[data-open="true"] .note__answer {
+  grid-template-rows: 1fr;
+}
+.note__chevron {
+  transition: rotate 300ms var(--ease-silk);
+}
+.note[data-open="true"] .note__chevron {
+  rotate: 180deg;
+}
+
+/* ---- Contact: a letter ---- */
+.letter {
+  background:
+    repeating-linear-gradient(transparent 0 2.6rem, color-mix(in oklab, var(--color-sky) 55%, transparent) 2.6rem calc(2.6rem + 1px)),
+    var(--color-milk);
+}
+.blank {
+  border: 0;
+  border-bottom: 2px dashed color-mix(in oklab, var(--color-toffee) 60%, transparent);
+  background: transparent;
+  padding: 0.1rem 0.25rem;
+  font-family: var(--font-hand);
+  font-size: 1rem;
+  color: var(--color-toffee-deep);
+  min-width: 0;
+  max-width: 100%;
+}
+.blank::placeholder {
+  color: color-mix(in oklab, var(--color-cocoa-soft) 50%, transparent);
+}
+.blank:focus {
+  outline: none;
+  border-bottom-style: solid;
+  border-bottom-color: var(--color-toffee-deep);
+}
+.blank[aria-invalid="true"] {
+  border-bottom-color: var(--color-danger);
+}
+.envelope-fly {
+  animation: fly 900ms var(--ease-snap) forwards;
+}
+@keyframes fly {
+  60% {
+    translate: 0 -20px;
+    rotate: -3deg;
+  }
+  100% {
+    translate: 120vw -160px;
+    rotate: 12deg;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,215 @@
+/* Base, typography and shared building blocks */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-milk);
+    color: var(--color-cocoa);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--color-honey);
+    color: var(--color-cocoa);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-leaf);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@utility gutter {
+  padding-inline: var(--gutter);
+}
+
+/* Headline face: Fraunces with soft, wonky letterforms */
+@utility font-plush {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  letter-spacing: -0.025em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+@utility font-plush-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-variation-settings: "SOFT" 100, "WONK" 0, "opsz" 36;
+  letter-spacing: -0.01em;
+}
+/* Handwritten notes: Shantell Sans, a little informal and bouncy */
+@utility font-scrawl {
+  font-family: var(--font-hand);
+  font-variation-settings: "INFM" 60, "BNCE" 30;
+  font-weight: 500;
+}
+
+@layer components {
+  .page-wrap {
+    width: 100%;
+    max-width: 110rem;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* ---- Buttons ---- */
+  .btn {
+    --btn-bg: var(--color-toffee-deep);
+    --btn-fg: var(--color-milk);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    font-weight: 600;
+    line-height: 1.1;
+    text-align: center;
+    box-shadow: var(--shadow-btn);
+    transition:
+      transform 120ms var(--ease-silk),
+      box-shadow 120ms var(--ease-silk),
+      background-color 180ms;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 -1px var(--color-cocoa);
+  }
+  .btn-wa {
+    --btn-bg: var(--color-leaf);
+  }
+  .btn-ghost {
+    --btn-bg: transparent;
+    --btn-fg: currentColor;
+    box-shadow: inset 0 0 0 2px currentColor;
+  }
+  .btn-ghost:hover {
+    --btn-bg: color-mix(in oklab, currentColor 8%, transparent);
+  }
+  .btn-ghost:active {
+    box-shadow: inset 0 0 0 2px currentColor;
+  }
+  .btn-milk {
+    --btn-bg: var(--color-milk);
+    --btn-fg: var(--color-cocoa);
+    box-shadow: inset 0 0 0 2px var(--color-cocoa), var(--shadow-btn);
+  }
+  .btn-sm {
+    min-height: 2.5rem;
+    padding: 0.5rem 1.15rem;
+    font-size: 0.9375rem;
+  }
+
+  /* ---- Numbered chapter label: (1) hello, it's me ---- */
+  .chapter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-toffee-deep);
+  }
+  .chapter__n {
+    display: grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    border: 2px solid var(--color-cocoa);
+    color: var(--color-cocoa);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 0.9rem;
+  }
+
+  /* ---- Small tilted "Available" tag ---- */
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.65rem;
+    border: 2px solid var(--color-cocoa);
+    border-radius: 0.7rem;
+    background: var(--color-milk);
+    font-family: var(--font-hand);
+    font-size: 0.8125rem;
+    box-shadow: 2px 3px 0 var(--color-cocoa);
+    rotate: 7deg;
+    white-space: nowrap;
+  }
+
+  /* ---- Bordered paper card with offset shadow ---- */
+  .paper {
+    background: var(--color-milk);
+    border: 3px solid var(--color-cocoa);
+    border-radius: 1.5rem;
+    box-shadow: 8px 8px 0 color-mix(in oklab, var(--color-cocoa) 18%, transparent);
+  }
+
+  /* ---- Form fields ---- */
+  .field {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.7rem 0.9rem;
+    border: 2px solid var(--color-cocoa);
+    border-radius: 0.9rem;
+    background: var(--color-milk);
+    font: inherit;
+    transition: box-shadow 150ms;
+  }
+  .field:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-honey) 70%, transparent);
+  }
+  .field[aria-invalid="true"] {
+    border-color: var(--color-danger);
+  }
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+}
+
+/* ---- Scroll reveal ----
+   Anything marked data-reveal fades up as it scrolls into view. Pure CSS
+   (scroll-driven animations), so nothing touches the DOM during hydration;
+   browsers without support simply show the content. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 90%;
+    }
+  }
+}
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
